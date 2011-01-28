@@ -1,0 +1,36 @@
+<h1>Tonight's Game</h1>
+<% unless @picked_games.nil? %>
+  <p>The results are in!</p>
+  <ul>
+  <% @picked_games.each do |pg| %>
+    <li><%= pg.name %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<form action="/pick" method="POST">
+  <p>Number of options:
+    <input type="text" name="num_games" value="<%= params[:num_games] || 1 %>" />
+  <p>Number of players: 
+    <input type="text" name="num_players" value="<%= params[:num_players] %>" />
+  </p>
+  <p>Duration:
+    <input type="text" name="duration" value="<%= params[:duration] %>" />
+  </p>
+  <p>Heaviness:
+    <select name="category">
+      <% ["", "light", "medium", "heavy"].each do |cat| %>
+        <option value="<%=cat%>" <%="selected" if params[:category] == cat%>><%=cat.capitalize%>
+      <% end %>
+    </select>
+  </p>
+
+  <input type="submit" value="Pick" />
+</form>
+
+<h1>Games</h1>
+<ul>
+<% @games.each do |game| %>
+  <li><a href="/game/<%= game.id %>"><%= game.name %></a></li>
+<% end %>
+</ul>
