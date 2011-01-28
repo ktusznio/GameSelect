@@ -1,3 +1,3 @@
 source :gemcutter
 gem 'sinatra'
-gem 'data-mapper'
+gem 'dm-core'
