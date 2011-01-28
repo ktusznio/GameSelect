@@ -5,7 +5,7 @@ require 'dm-migrations'
 require 'dm-validations'
 
 # sqlite3
-DataMapper.setup(:default, "sqlite://#{Dir.pwd}/games.db")
+DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite://#{Dir.pwd}/games.db")
 
 class Game
   include DataMapper::Resource
