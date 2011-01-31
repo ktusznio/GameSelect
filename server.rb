@@ -16,11 +16,6 @@ post '/pick' do
   haml :index
 end
 
-get '/game/:id' do
-  @game = Game.get(params[:id])
-  haml :game
-end
-
 post '/game/:id' do
   @game = Game.get(params[:id])
 
