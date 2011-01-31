@@ -5,7 +5,7 @@ require 'game'
 puts 'Starting server...'
 
 get '/' do
-  @games = Game.all(:order => [:name.desc])
+  @games = Game.all(:order => [:name.asc])
   erb :index
 end
 
