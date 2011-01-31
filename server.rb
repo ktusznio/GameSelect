@@ -6,19 +6,19 @@ puts 'Starting server...'
 
 get '/' do
   @games = Game.all(:order => [:name.asc])
-  erb :index
+  haml :index
 end
 
 post '/pick' do
   @games = Game.all
   @picked_games = Game.pick(params[:num_players], params[:duration],
     params[:category], params[:num_games])
-  erb :index
+  haml :index
 end
 
 get '/game/:id' do
   @game = Game.get(params[:id])
-  erb :game
+  haml :game
 end
 
 post '/game/:id' do
