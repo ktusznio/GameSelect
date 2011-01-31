@@ -1,0 +1,38 @@
+%h1 Tonight's Game
+
+- unless @picked_games.nil?
+  %p The results are in!
+  %ul
+  - @picked_games.each do |pg|
+    %li= pg.name
+
+%form{:action => "/pick", :method => "POST"}
+  %p
+    Number of options:
+    %input{:type => "text", :name => "num_games", 
+      :value => params[:num_games] || 1}
+      
+  %p
+    Number of players: 
+    %input{:type => "text", :name => "num_players",
+      :value => params[:num_players]}
+      
+  %p 
+    Duration:
+    %input{:type => "text", :name => "duration",
+      :value => params[:duration]}
+
+  %p 
+    Heaviness:
+    %select{:name => "category"}
+      - ["", "light", "medium", "heavy"].each do |cat|
+        %option{:value => cat, :selected => params[:category] == cat} #{cat.capitalize}
+
+  %input{:type => "submit", :value => "Pick"}  
+
+%h1 Games
+%ul
+- @games.each do |game|
+  %li 
+    %a{:href => "/game/#{game.id}"} #{game.name}
+
