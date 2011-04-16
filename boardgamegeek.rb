@@ -7,13 +7,11 @@ module BoardGameGeek
   BGG_URL = "http://www.boardgamegeek.com/xmlapi"
 
   def self.user_games(user, params = {})
-    route = "/collection/#{user}"
+    route = "/collection/#{user}?own=1"
     data = self.request(route)
     games = data["item"]
-    games = games.map {|game| Game.from_xml(game) }
-    games.select do |game|
-      game.fits(params)
-    end
+    games = games.map {|game| Game.from_xml(game)}
+    games.select {|game| game.fits(params)}
   end
 
   def self.random_user_game(user, num_games = 1, params = {})
@@ -86,6 +84,15 @@ module BoardGameGeek
 
     def to_s
       name
+    end
+
+    def to_json(options)
+      {
+        :name => name,
+        :min_players => min_players,
+        :max_players => max_players,
+        :playtime => playtime
+      }.to_json
     end
   end
 

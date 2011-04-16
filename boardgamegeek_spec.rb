@@ -1,4 +1,4 @@
-require "bgg"
+require "boardgamegeek"
 
 describe BoardGameGeek, "#user_games" do
   before do
