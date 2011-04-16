@@ -86,13 +86,13 @@ module BoardGameGeek
       name
     end
 
-    def to_json(options)
+    def to_json(*a)
       {
         :name => name,
         :min_players => min_players,
         :max_players => max_players,
         :playtime => playtime
-      }.to_json
+      }.to_json(*a)
     end
   end
 
