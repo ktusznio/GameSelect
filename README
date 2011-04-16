@@ -1,0 +1,3 @@
+Uses the BoardGameGeek XML API to randomly choose a game for you to play, matching for number of players and playtime.
+
+Hosted at http://afternoon-day-915.heroku.com/
